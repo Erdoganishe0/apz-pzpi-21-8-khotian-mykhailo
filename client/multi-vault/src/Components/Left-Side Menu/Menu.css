@@ -1,0 +1,10 @@
+.menu-table th{
+    color: White;
+    font-weight: bold;
+    font-size: 16px;
+
+}
+
+.menu-table{
+    padding-left: 20px;
+}

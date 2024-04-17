@@ -22,12 +22,12 @@ const Menu = () => {
         </tr>
         <tr>
             <td>
-                <Element iconSrc="upload.png" name="Upload" isActive = {false} />
+                <Element iconSrc="upload.png" name="Send" isActive = {false} />
             </td>
         </tr>
         <tr>
             <td>
-                <Element iconSrc="download.png" name="Download" isActive = {false} />
+                <Element iconSrc="download.png" name="Recieve" isActive = {false} />
             </td>
         </tr>
         <tr>

@@ -4,39 +4,22 @@ import './Menu.css'
 
 const Menu = () => {
   return (
-    <table class = "menu-table">
-        <th>
-            <td>
-                MENU
-            </td>
-        </th>
-        <tr>
-            <td>
-                <Element iconSrc="portfolio.png" name="Portfolio" isActive = {true}/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <Element iconSrc="wallet.png" name="Accounts" isActive={false} />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <Element iconSrc="upload.png" name="Send" isActive = {false} />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <Element iconSrc="download.png" name="Recieve" isActive = {false} />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <Element iconSrc="settings.png" name="Settings" isActive = {false} />
-            </td>
-        </tr>
+    <div className = "menu">
+        <div className='menu-header'>
+            <h2 className='menu-h2'>MENU</h2>
+        </div>
+        
+        <Element iconSrc="portfolio.png" name="Portfolio" isActive = {true}/>
 
-    </table>
+        <Element iconSrc="wallet.png" name="Accounts" isActive={false} />
+
+        <Element iconSrc="upload.png" name="Send" isActive = {false} />
+
+        <Element iconSrc="download.png" name="Recieve" isActive = {false} />
+
+        <Element iconSrc="settings.png" name="Settings" isActive = {false} />
+        
+    </div>
   )
 }
 

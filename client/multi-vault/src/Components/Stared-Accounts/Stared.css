@@ -1,9 +1,13 @@
 .stared{
-    padding-left: 20px;
+    padding-left: 1.5vw;
 }
 
 .stared-h2{
     color: White;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 0.8vw;
+}
+
+.stared-header{
+    padding-top: 5vh;
 }

@@ -1,10 +1,13 @@
-.menu-table th{
-    color: White;
-    font-weight: bold;
-    font-size: 16px;
-
+.menu{
+    padding-left: 1.5vw;
 }
 
-.menu-table{
-    padding-left: 20px;
+.menu-h2{
+    color: White;
+    font-weight: bold;
+    font-size: 0.8vw;
+}
+
+.menu-header{
+    padding-bottom: 0.5vh;
 }

@@ -1,15 +1,3 @@
-﻿Vision & Scope
-
-
-Vision and Scope Document
-for
-"Програмна система для керування пристроями для фізичного зберігання криптовалютних активів фізичною особою або групою фізичних осіб та їх інтеграції в web3 додатки"
-Version 1.0 approved
-Prepared by Khotian Mykhailo
-29.10.2023
-Table of Contents (Зміст)
-
-
 1 BUSINESS REQUIREMENTS (БІЗНЕС-ВИМОГИ)
 1.1 Background (передумови)
 

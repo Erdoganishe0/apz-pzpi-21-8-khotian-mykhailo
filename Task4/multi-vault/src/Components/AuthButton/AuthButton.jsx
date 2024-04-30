@@ -2,9 +2,9 @@ import React from 'react'
 import './AuthButton.css'
 const AuthButton = (props) => {
   return (
-    <div className='auth-button-container'>
+    <button className='auth-button-container' onClick = {props.function}>
         {props.name}
-    </div>
+    </button>
   )
 }
 

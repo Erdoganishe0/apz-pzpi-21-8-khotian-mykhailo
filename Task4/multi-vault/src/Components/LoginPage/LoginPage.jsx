@@ -10,7 +10,6 @@ const LoginPage = (props) => {
             {props.isLogin ? <Auth/>: <Register/>}
         </div>
         <div className='login-page-right'>
-           
         </div>
     </div>
   )

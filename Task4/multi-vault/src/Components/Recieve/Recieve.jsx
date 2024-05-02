@@ -3,7 +3,7 @@ import './Recieve.css'
 
 const Recieve = (props) => {
   return (
-    <div className='recieve-container'>
+    <div className= {props.isActive ? 'recieve-container': 'recieve-container hidden'}>
         <div className='recieve-header'>
             Recieve asset on wallet
         </div>

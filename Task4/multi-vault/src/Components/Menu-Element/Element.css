@@ -28,3 +28,7 @@
 .active .element-name{
     color: white;
 }
+
+a{
+    text-decoration: none;
+}

@@ -1,11 +1,15 @@
 import React from 'react'
 import './Element.css'
+import Send from '../Send/Send'
+import Recieve from '../Recieve/Recieve'
 
 const Element = (props) => {
   return (
-        <div className = {props.isActive ? "element-container active" : "element-container"}> 
+        <div className = "element-container"> 
             <img class = "element-icon" src={props.isActive ? "Static/active/" + props.iconSrc : "Static/inactive/" + props.iconSrc}></img>
-            <h3 class = "element-name">{props.name}</h3>
+            <a href = {props.isLink ? "/" + props.name : ""}  class = "element-name">{props.name}</a>  
+            {props.name == "Send" ? <Send isActive = {!props.isHidden}/> : ""}
+            {props.name == "Recieve" ? <Recieve isActive = {!props.isHidden} adress = "0x1233542376527547234"/> : ""}
         </div>
   )
 }

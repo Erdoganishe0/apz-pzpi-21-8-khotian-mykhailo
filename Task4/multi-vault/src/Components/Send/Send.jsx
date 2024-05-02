@@ -1,9 +1,9 @@
 import React from 'react'
 import './Send.css'
 
-const Send = () => {
+const Send = (props) => {
   return (
-    <div className = 'send-container'>
+    <div className = {props.isActive ? 'send-container': 'send-container hidden' }>
 
         <div className = 'send-header'>
             Send

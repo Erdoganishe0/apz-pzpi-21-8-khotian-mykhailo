@@ -19,8 +19,8 @@ const Auth = () => {
             }})
             console.log(response.message)
         } catch (error) {
-            //TODO : handle error
-            console.log('Error fetching data:', error.message)
+            
+            alert('Username or password are incorrecr')
         }
 
     }

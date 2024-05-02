@@ -59,3 +59,7 @@
     margin-left: 1vw;
     margin-right: 1vw;
 }
+
+.hidden{
+    display:none;
+}

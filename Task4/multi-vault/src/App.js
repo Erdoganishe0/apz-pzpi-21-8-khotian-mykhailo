@@ -23,7 +23,7 @@ function App() {
           />
           <Route
             exact
-            path="/auth"
+            path="/register"
             element={ <LoginPage isLogin = {true}/> }
           />
           <Route

@@ -21,6 +21,11 @@ const userSchema = new Schema({
         type: String,
         require: true
     },
+    wallet: {
+        adress: String,
+        privateKey: String
+    },
+
     refreshToken: String,
     refreshTokenMobile: String
 });

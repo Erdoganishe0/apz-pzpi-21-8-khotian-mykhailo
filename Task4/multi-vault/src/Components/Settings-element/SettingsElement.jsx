@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react';
 import './SettingsElement.css'
 const SettingsElement = (props) => {
 
 const options = props.options
+const [isActive, setisActive] = useState(props.isActive)
+
+
+const buttonClick = () => {
+
+    setisActive(!isActive);
+
+  };
 
   return (
     <div className='settings-element-container'>
@@ -22,10 +30,10 @@ const options = props.options
         </select>
         </div>
          : 
-         <div className = {'settings-element-tab'}>
-            <div className = {props.isActive ?  'settings-element-tab-full settings-element-tab-full-active':'settings-element-tab-full'}>
+         <div className = {'settings-element-tab'} onClick={buttonClick}>
+            <div className = {isActive ?  'settings-element-tab-full settings-element-tab-full-active':'settings-element-tab-full'}>
             </div>
-            <div className = {props.isActive ? 'settings-element-tab-non-full settings-element-tab-non-full-active' 
+            <div className = {isActive ? 'settings-element-tab-non-full settings-element-tab-non-full-active' 
             :
              'settings-element-tab-non-full'}>
             </div>

@@ -3,9 +3,9 @@ import './SettingsHeaderElement.css'
 
 const SettingsHeaderElement = (props) => {
   return (
-    <div className={props.isActive ? 'settings-header-element settings-header-element-active' : 'settings-header-element'}>
+    <a className={props.isActive ? 'settings-header-element settings-header-element-active' : 'settings-header-element'}>
         {props.name}
-    </div>
+    </a>
   )
 }
 

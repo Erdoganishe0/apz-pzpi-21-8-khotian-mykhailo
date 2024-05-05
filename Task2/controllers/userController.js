@@ -7,7 +7,6 @@ const getAllUser = async (req, res) => {
     res.json(user)
 }
 
-
 const createNewUser = async (req, res) => {
     if (!req?.body?.name) {
         return res.sendStatus(400).json({ 'message': 'Name are required!' });
@@ -58,6 +57,8 @@ const deleteUser = async (req, res) => {
 }
 
 const getUser = async (req, res) => {
+    console.log("AFTER JWT")
+
     if (!req?.user) return res.status(400).json({ 'message': 'User ID required' });
 
     const user = await User.findOne({ username: req.user }).exec();
@@ -65,8 +66,9 @@ const getUser = async (req, res) => {
         return res.status(204).json({ "message": `No user with ID ${req.user}.` });
     }
     const data = user._doc;
-    const { refreshTokenMobile, password, refreshToken, ...rest } = data;
+    const { refreshTokenMobile, password, refreshToken, wallet, ...rest } = data;
 
+    rest.wallet = data.wallet.adress;
 
     res.json(rest);
 }

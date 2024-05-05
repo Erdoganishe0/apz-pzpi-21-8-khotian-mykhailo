@@ -1,5 +1,6 @@
 const User = require('../../model/User')
 const bcrypt = require('bcrypt')
+const {createWallet} = require('../../middleware/walletInteractions')
 
 const handleNewUser = async (req, res) => {
     const { user, email, pwd } = req.body
@@ -12,12 +13,18 @@ const handleNewUser = async (req, res) => {
     try{
 
         const hashedPwd = await bcrypt.hash(pwd, 10)
+        
+        const wallet = await createWallet();
 
         const result = await User.create(
         {
             "email": email,
             "username": user,
-            'password': hashedPwd
+            'password': hashedPwd,
+            "wallet":{
+                "adress": wallet.address,
+                "privateKey": wallet.privateKey
+            }
         })
         
         console.log(result)

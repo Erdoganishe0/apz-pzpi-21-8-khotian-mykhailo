@@ -6,13 +6,9 @@ const cors = require('cors')
 const corsOptions = require('./config/corsOptions');
 const credentials = require('./middleware/credentials');
 const cookieParser = require('cookie-parser');
-
-const mongoose = require('mongoose');
-const connectDB = require('./config/dbCon');
-
+const {sendTrx, createWallet, importWallet} = require('./middleware/walletInteractions')
 const PORT = process.env.PORT || 3001;
 
-connectDB()
 
 app.use(credentials);
 app.use(cors(corsOptions));
@@ -22,14 +18,13 @@ app.use(express.json());
 app.use(cookieParser());
 
 
-// app.get('/a', (req,res) => {console.log("a")})
-app.use('/', require('./routes/root'));
-app.use('/auth', require('./routes/auth'));
-app.use('/api/user', require("./routes/api/user")); 
 
-mongoose.connection.once('open', () => {
-    console.log('Connected to DB');
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    wallet = importWallet("0xa0768ff724d3ecadfd2905dba9a2d27274dcb381d6a23ca118b23482d635f3ff")
+    console.log(wallet.address)
+    //sendTrx(wallet.address, "0x4f19b886C5Cc4ac9Ca32596D2bBCf760928703B8" , 0.000001)
 });
+
+

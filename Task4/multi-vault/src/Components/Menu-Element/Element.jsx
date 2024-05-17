@@ -18,7 +18,7 @@ const Element = (props) => {
             <img class = "element-icon" src={props.isActive ? "Static/active/" + props.iconSrc : "Static/inactive/" + props.iconSrc}></img>
             {props.isLink ? <a href = {"/" + props.name}  class = "element-name">{props.name}</a> 
             : <div class = "element-name" onClick={buttonClick}>{props.name}</div> }
-            {props.name == "Send" ? <Send isActive = {!isHidden}/> : ""}
+            {props.name == "Send" ? <Send isActive = {[isHidden, setIsHidden]}/> : ""}
             {props.name == "Recieve" ? <Recieve isActive = {!isHidden} adress = "0x1233542376527547234"/> : ""}
         </div>
   )

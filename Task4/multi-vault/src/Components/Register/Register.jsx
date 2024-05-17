@@ -3,8 +3,12 @@ import axios from 'axios'
 import './Register.css'
 import LoginElement from '../LoginElement/LoginElement'
 import AuthButton from '../AuthButton/AuthButton'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
+
+    const isEnglish = true
+    const nav = useNavigate()
 
     function checkPassword(){
         return document.getElementsByClassName("login-element-input")[2].value == document.getElementsByClassName("login-element-input")[3].value
@@ -25,6 +29,7 @@ const Register = () => {
               'Content-Type': 'application/json'
             }})
         console.log(response)
+        nav("../login")
         } catch (error) {
         console.error('Error fetching data:', error)
         }
@@ -34,7 +39,7 @@ const Register = () => {
     function buttonOnClick(){
 
         if (!checkPassword()){
-            alert("HUI")
+            alert("Password error!")
             return 
         }
         const dataObject = get_current_values()
@@ -51,13 +56,13 @@ const Register = () => {
     </div>
     <div className='register-redirect'>
         Already have an account?
-        <a> Sing in </a>
+        <a href='/login'> {isEnglish ? "Sign up" : "Зареєструватись"} </a>
     </div>
     <div className='login-elements'>
-        <LoginElement name = "Email" src = "./Static/email.png"/>
-        <LoginElement name = "Username" src = "./Static/person.png"/>
-        <LoginElement name = "Password" src = "./Static/password.png"/>
-        <LoginElement name = "Confirm password" src = "./Static/password.png"/>
+        <LoginElement name = {isEnglish ? "Email" : "Електронна пошта"} src = "./Static/email.png"/>
+        <LoginElement name = {isEnglish ? "Username" : "Ім'я користувача"} src = "./Static/person.png"/>
+        <LoginElement name = {isEnglish ? "Password" : "Пароль"} src = "./Static/password.png"/>
+        <LoginElement name = {isEnglish ? "Confirm password" : "Підтвердіть пароль"} src = "./Static/password.png"/>
     </div>
     <div className='register-button'>
         <AuthButton name = "Sign up" function = {buttonOnClick}/>

@@ -2,6 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import './Recieve.css'
 import axios from 'axios'
+import { QRCode } from 'react-qrcode-logo';
+
 
 const Recieve = (props) => {
 
@@ -16,7 +18,7 @@ const Recieve = (props) => {
     }
     
 
-    const [wallet, setWallet] = useState(null);
+    const [wallet, setWallet] = useState(null)
 
     useEffect(() => {
         const fetchWallet = async () => {
@@ -38,12 +40,20 @@ const Recieve = (props) => {
             Recieve asset on wallet
         </div>
         <div className='recieve-qr'>
+            <QRCode value = {wallet ? wallet : 123} logoImage = "/Static/ETH.png" logoPadding="2"/>
         </div>
         <div className='recieve-adress'>
             {wallet}
         </div>
         <div className='copy-buttons'>
-            <div className='copy-button'>Copy adress
+            <div className='copy-button' onClick={async ()=>{
+                try {
+                    await navigator.clipboard.writeText(wallet)                
+                    console.log('Text copied to clipboard:', wallet)                
+                  } catch (err) {                
+                    console.error('Failed to copy text: ', err)                
+                  }
+            }}>Copy adress
             </div>
         </div>
     </div>

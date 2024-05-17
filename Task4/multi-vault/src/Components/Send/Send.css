@@ -53,8 +53,11 @@
 #send-input-amount{
     width: 12vw;
     margin-left: 1vw;
+    
 }
-
+.send-input-eth{
+    padding-right: 1vw;
+}
 input:focus,
 select:focus,
 textarea:focus,

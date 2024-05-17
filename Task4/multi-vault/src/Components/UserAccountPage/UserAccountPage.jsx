@@ -1,11 +1,14 @@
 import React from 'react'
-import Left from '../Left-Column/Left'
+import './UserAccountPage.css'
 import Portfolio from '../Portfolio/Portfolio'
+import Left from '../Left-Column/Left'
 
-const PortfolioPage = (props) => {
+
+
+const UserAccountPage = (props) => {
   return (
-    <div className="App">
-        <div className='menu-container'>
+    <div className='app'>
+         <div className='menu-container'>
             <Left current = {props.current} />
         </div>
         <div className='main-container'>
@@ -15,4 +18,4 @@ const PortfolioPage = (props) => {
   )
 }
 
-export default PortfolioPage
+export default UserAccountPage

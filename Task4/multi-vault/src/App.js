@@ -10,6 +10,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import UserAccountPage from './Components/UserAccountPage/UserAccountPage';
 
 function App() {
   return (
@@ -23,17 +24,22 @@ function App() {
           />
           <Route
             exact
+            path="/user"
+            element={ <UserAccountPage current = "Accounts" isMain = {false}/>  }
+          />
+          <Route
+            exact
             path="/register"
-            element={ <LoginPage isLogin = {true}/> }
+            element={ <LoginPage isLogin = {false}/> }
           />
           <Route
             exact
             path="/login"
-            element={ <LoginPage isLogin = {false}/> }
+            element={ <LoginPage isLogin = {true}/> }
           />
           <Route
             path="/portfolio"
-            element={<PortfolioPage current = "Portfolio"/> }
+            element={<PortfolioPage current = "Portfolio" isMain = {true}/> }
           />
           <Route
             path="/settings"

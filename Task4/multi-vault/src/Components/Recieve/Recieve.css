@@ -22,10 +22,9 @@
     margin-top: 5vh;
     display: flex;
     justify-content: center;
-
 }
 
-.recieve-qr img{
+.recieve-qr-img{
     width: 8vw;
     height: 8vw;
 }

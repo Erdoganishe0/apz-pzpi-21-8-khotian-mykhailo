@@ -3,8 +3,14 @@ import './Auth.css'
 import axios from 'axios'
 import LoginElement from '../LoginElement/LoginElement'
 import AuthButton from '../AuthButton/AuthButton'
+import { useNavigate } from 'react-router-dom'
+
 
 const Auth = () => {
+
+    const isEnglish = true
+    const nav = useNavigate()
+
     function get_current_values(){
         const email = document.getElementsByClassName("login-element-input")[0].value
         const password = document.getElementsByClassName("login-element-input")[1].value
@@ -17,10 +23,9 @@ const Auth = () => {
                 headers: {
                 'Content-Type': 'application/json'
             }})
-            console.log(response.message)
+            nav("../portfolio")
         } catch (error) {
-            
-            alert('Username or password are incorrecr')
+            alert(isEnglish ? "Username or password are incorrect" : "Неправильне ім`я або пароль")
         }
 
     }
@@ -36,18 +41,18 @@ const Auth = () => {
   return (
     <div className='auth-container'>
         <div className='auth-header'>
-            Sign in
+            {isEnglish ? "Sign in" : "Увійти"}
         </div>
         <div className='auth-redirect'>
-            Have no account?
-            <a> Register </a>
+        {isEnglish ? "Have no account?" : "Немає акаунта?"}
+            <a href='/register'>  {isEnglish ? "Register" : "Зареєструватись"} </a>
         </div>
         <div className='login-elements'>
-            <LoginElement name = "Username" src = "./Static/person.png"/>
-            <LoginElement name = "Password" src = "./Static/password.png"/>
+            <LoginElement name =  {isEnglish ? "Username" : "Ім'я користувача"} src = "./Static/person.png"/>
+            <LoginElement name = {isEnglish ? "Password"  : "Пароль"}src = "./Static/password.png"/>
         </div>
         <div className='auth-button'>
-            <AuthButton name = "Sign in" function = {buttonOnClick} />
+            <AuthButton name = {isEnglish ? "Sign in" : "Увійти"} function = {buttonOnClick} />
         </div>
     </div>
   )

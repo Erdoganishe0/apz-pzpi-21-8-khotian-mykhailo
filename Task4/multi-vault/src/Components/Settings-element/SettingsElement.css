@@ -91,3 +91,28 @@
     outline:0px;
 }
 
+.settings-element-button{
+
+    display: flex;
+    height: 3vh;
+    padding-top: 2.5vh;
+}
+
+.settings-button{
+
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    font-size: 2vh;
+    height: 3vh;
+    border-radius: 0.5vw;
+    background-color: rgb(154,148,236);
+    color: white;  
+    border: none;
+}
+
+a, a:visited{
+    text-decoration: none;
+    color: white; 
+}
+
+

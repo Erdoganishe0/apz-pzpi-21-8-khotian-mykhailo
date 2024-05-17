@@ -22,7 +22,7 @@ const buttonClick = () => {
                 {props.description}
             </p>
         </div>
-        {props.isList ? <div className='settings-element-list'>
+        {props.type == "List" ? <div className='settings-element-list'>
         <select>
             {options.map((option, index) => (
                 <option key={index} value={option.value}>{option.label}</option>
@@ -30,6 +30,7 @@ const buttonClick = () => {
         </select>
         </div>
          : 
+         props.type == "Bool" ?
          <div className = {'settings-element-tab'} onClick={buttonClick}>
             <div className = {isActive ?  'settings-element-tab-full settings-element-tab-full-active':'settings-element-tab-full'}>
             </div>
@@ -37,6 +38,20 @@ const buttonClick = () => {
             :
              'settings-element-tab-non-full'}>
             </div>
+        </div>
+        :
+        <div className = {'settings-element-button'}>
+                {props.isLogOut ?
+                <button className='settings-button' onClick={props.onClick}>
+                    <a href='/logout'>
+                        {props.buttonName}
+                    </a>
+                </button>
+                :
+                <button className='settings-button' onClick={props.onClick}>
+                    {props.buttonName}
+                </button>
+                }
         </div>
         } 
     </div>

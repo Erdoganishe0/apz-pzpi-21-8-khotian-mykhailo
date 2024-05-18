@@ -10,7 +10,7 @@ const Menu = (props) => {
 
     <div className = "menu">
         <div className='menu-header'>
-            <h2 className='menu-h2'>MENU</h2>
+            <h2 className='menu-h2'>{isEnglish? "MENU": "МЕНЮ"}</h2>
         </div>
         
         <Element 
@@ -18,12 +18,14 @@ const Menu = (props) => {
           isLink = {true} 
           iconSrc="portfolio.png" 
           name={isEnglish? "Portfolio": "Портфоліо"} 
+          link = "Portfolio"
           isActive = {props.current == "Portfolio" ? true : false}/>
 
         <Element 
           isHidden = {false} 
           isLink = {true} 
           iconSrc="wallet.png" 
+          link = "Accounts"
           name={isEnglish?  "Accounts" : "Акаунти"}
           isActive={props.current == "Accounts" ? true : false} />
 
@@ -44,6 +46,7 @@ const Menu = (props) => {
         <Element 
           isHidden = {false} 
           isLink = {true} 
+          link = "Settings"
           iconSrc="settings.png" 
           name={isEnglish? "Settings" : "Налаштування"}
           isActive = {props.current == "Settings" ? true : false} />

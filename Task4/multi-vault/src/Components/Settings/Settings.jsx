@@ -35,7 +35,7 @@ useEffect(() => {
 
 const lang_options = [{
     value: 'language-ua',
-    label: 'Ukrainian - Ukrainian'
+    label: 'Українська'
     }, 
     {
     value: 'language-us',
@@ -44,7 +44,7 @@ const lang_options = [{
 
 const region_options = [{
   value: 'region-ua',
-  label: 'Ukraine'
+  label: 'Україна'
   }, 
   {
   value: 'region-us',
@@ -52,7 +52,7 @@ const region_options = [{
 }]
 
 const [ActiveHeader, setActiveHeader] = useState(0)
-
+const isEnglish = true
   return (
     <div className=''>
         <MainHeader />
@@ -60,13 +60,37 @@ const [ActiveHeader, setActiveHeader] = useState(0)
             <SettingsHeader activeHeader = {[ActiveHeader, setActiveHeader]}/>
             {ActiveHeader == 0 ? 
             <div className='settings-elements-containers'>
-                <SettingsElement isActive = {false} type = {"List"} name = {'Display language'} description = {'Set the language on display.'} options = {lang_options}/>
-                <SettingsElement isActive = {false} type = {"List"} name = {'Region'} description = {'Choose your region to update format of date and time.'} options = {region_options}/>
-                <SettingsElement isLogOut = {true} isActive = {true} type = {"Button"} buttonName = {"Log Out"} name = {'Log Out'} description = {'Log out from the account'} options = {[{}]}/>
+                <SettingsElement 
+                isActive = {false} 
+                type = {"List"} 
+                name = {isEnglish ? 'Display language' : 'Мова інтерфейсу'} 
+                description = {isEnglish ? 'Set the language on display.' : 'Оберіть мову для відображення'} 
+                options = {lang_options}/>
+                <SettingsElement 
+                isActive = {false} 
+                type = {"List"} 
+                name = {isEnglish ? 'Region' : 'Регіон'} 
+                description = {isEnglish ? 'Choose your region to update format of date and time.' :
+                 'Оберіть регіон для оновлення формату дати та часу'} 
+                options = {region_options}/>
+                <SettingsElement 
+                isLogOut = {true} 
+                isActive = {true} 
+                type = {"Button"} 
+                buttonName = {isEnglish ? "Log Out": 'Вийти'} 
+                name = {isEnglish ? 'Log Out' : 'Вийти'} 
+                description = {isEnglish ? 'Log out from the account': 'Вийти з акаунта'} 
+                options = {[{}]}/>
           </div>
           : ActiveHeader == 1 ?  
           <div className='settings-elements-containers'>
-                <SettingsElement isActive = {false} type = {"Button"} name = {'Export account'} description = {'Get your private key'} buttonName = {"Export"} options = {lang_options} onClick={async ()=>{
+                <SettingsElement 
+                isActive = {false} 
+                type = {"Button"} 
+                name = {isEnglish ? 'Export account' : 'Експорт акаунту'} 
+                description = {isEnglish ? 'Get your private key': 'Отримати приватний ключ'} 
+                buttonName = {isEnglish ? "Export": 'Експорт'} 
+                options = {lang_options} onClick={async ()=>{
                 let text = wallet ? wallet : 123
                 try {
                     await navigator.clipboard.writeText(text)                
@@ -75,7 +99,12 @@ const [ActiveHeader, setActiveHeader] = useState(0)
                     console.error('Failed to copy text: ', text)                
                   }
             }}/>
-                <SettingsElement isActive = {true} type = {"Bool"} name = {'Hide empty tokens'} description = {'Hide tokens with zero value.'} options = {[{}]}/>
+                <SettingsElement 
+                isActive = {true} 
+                type = {"Bool"} 
+                name = {isEnglish ? 'Hide empty tokens': 'Сховати порожні токени'} 
+                description = {isEnglish ? 'Hide tokens with zero value.' : 'Сховати токени з нульової вартістю.'} 
+                options = {[{}]}/>
           </div>: 
           ActiveHeader == 2 ?  
           <div className='settings-elements-containers'>

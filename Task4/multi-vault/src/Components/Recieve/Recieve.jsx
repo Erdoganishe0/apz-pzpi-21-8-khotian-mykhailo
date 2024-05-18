@@ -7,6 +7,8 @@ import { QRCode } from 'react-qrcode-logo';
 
 const Recieve = (props) => {
 
+    const isEnglish = true
+
     const fetchUserWallet = async () => {
         try {    
             const response = await axios.get('api/user')
@@ -37,7 +39,7 @@ const Recieve = (props) => {
   return (
     <div className= {props.isActive ? 'recieve-container': 'recieve-container hidden'}>
         <div className='recieve-header'>
-            Recieve asset on wallet
+            {isEnglish ? "Recieve asset on wallet" : "Отримати токени на гаманець"}
         </div>
         <div className='recieve-qr'>
             <QRCode value = {wallet ? wallet : 123} logoImage = "/Static/ETH.png" logoPadding="2"/>
@@ -48,12 +50,11 @@ const Recieve = (props) => {
         <div className='copy-buttons'>
             <div className='copy-button' onClick={async ()=>{
                 try {
-                    await navigator.clipboard.writeText(wallet)                
-                    console.log('Text copied to clipboard:', wallet)                
+                    await navigator.clipboard.writeText(wallet)                          
                   } catch (err) {                
-                    console.error('Failed to copy text: ', err)                
+                    alert(isEnglish ? "Failed to copy text":"Помилка при копіюванні адреси")                
                   }
-            }}>Copy adress
+            }}>{isEnglish ? "Copy adress" : "Копіювати адресу"}
             </div>
         </div>
     </div>

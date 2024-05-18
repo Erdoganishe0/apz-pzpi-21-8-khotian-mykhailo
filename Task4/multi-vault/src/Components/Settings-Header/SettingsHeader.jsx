@@ -5,13 +5,14 @@ import SettingsHeaderElement from '../Settings-Header-Element/SettingsHeaderElem
 
 
 const SettingsHeader = (props) => {
+  const isEnglish = true
   const [ActiveHeader, setActiveHeader] = props.activeHeader
   return (
     <div className='settings-header-container'>
-        <SettingsHeaderElement name = {'General'} isActive = {ActiveHeader == 0 ? true : false}  onClick = {() => setActiveHeader(0)} />
-        <SettingsHeaderElement name = {'Accounts'} isActive = {ActiveHeader == 1 ? true : false}  onClick = {() => setActiveHeader(1)} />
-        <SettingsHeaderElement name = {'About'} isActive = {ActiveHeader == 2 ? true : false}  onClick = {() => setActiveHeader(2)} />
-        <SettingsHeaderElement name = {'Help'} isActive = {ActiveHeader == 3 ? true : false}  onClick = {() => setActiveHeader(3)} />
+        <SettingsHeaderElement name = {isEnglish ? 'General': 'Загальне'} isActive = {ActiveHeader == 0 ? true : false}  onClick = {() => setActiveHeader(0)} />
+        <SettingsHeaderElement name = {isEnglish ? 'Accounts': 'Акаунти'} isActive = {ActiveHeader == 1 ? true : false}  onClick = {() => setActiveHeader(1)} />
+        <SettingsHeaderElement name = {isEnglish ? 'About': 'Про нас'} isActive = {ActiveHeader == 2 ? true : false}  onClick = {() => setActiveHeader(2)} />
+        <SettingsHeaderElement name = {isEnglish ? 'Help': 'Допомога'} isActive = {ActiveHeader == 3 ? true : false}  onClick = {() => setActiveHeader(3)} />
     </div>
   )
 }

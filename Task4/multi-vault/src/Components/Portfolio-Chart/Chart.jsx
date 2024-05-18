@@ -3,81 +3,32 @@ import './Chart.css'
 import { Chart as ChartJS, defaults } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 
-const Chart = () => {
-
-  const revenueData = [
-    {
-      "label": "Jan",
-      "revenue": 64854,
-      "cost": 32652
-    },
-    {
-      "label": "Feb",
-      "revenue": 54628,
-      "cost": 42393
-    },
-    {
-      "label": "Mar",
-      "revenue": 117238,
-      "cost": 50262
-    },
-    {
-      "label": "Apr",
-      "revenue": 82830,
-      "cost": 64731
-    },
-    {
-      "label": "May",
-      "revenue": 91208,
-      "cost": 41893
-    },
-    {
-      "label": "Jun",
-      "revenue": 103609,
-      "cost": 83809
-    },
-    {
-      "label": "Jul",
-      "revenue": 90974,
-      "cost": 44772
-    },
-    {
-      "label": "Aug",
-      "revenue": 82919,
-      "cost": 37590
-    },
-    {
-      "label": "Sep",
-      "revenue": 62407,
-      "cost": 43349
-    },
-    {
-      "label": "Oct",
-      "revenue": 82528,
-      "cost": 45324
-    },
-    {
-      "label": "Nov",
-      "revenue": 56979,
-      "cost": 47978
-    },
-    {
-      "label": "Dec",
-      "revenue": 87436,
-      "cost": 39175
-    }
-  ]
-  
+const Chart = (props) => {
+  function convertToTime(time, isUkr){
+    let date = new Date(time)
+    console.log(date)
+    let month = date.getUTCMonth() + 1
+    let year = date.getFullYear()
+    let day = date.getUTCDate()
+    let hours = date.getHours()
+    let minutes = date.getMinutes()
+      let result = isUkr? day.toString()+'.'+month.toString()+'.'+year.toString()+' '+hours.toString()+':'+minutes.toString() 
+      : month.toString()+'.'+day.toString()+'.'+year.toString()+' '+hours.toString()+':'+minutes.toString() 
+    //result = date
+    return result
+ } 
+  const chartData = props.data;
+  console.log(`data: ${chartData[0].time}`)
 
   return (
     <div className="chart-container ataCard revenueCard">
     <Line
       data={{
-        labels: revenueData.map((data) => data.label),
+        labels: chartData.map((data) => convertToTime(data.time,props.isUkr)),
         datasets: [
           {
             label: "Balance",
-            data: revenueData.map((data) => data.cost),
+          data: chartData.map((data) => (data.bal*props.ethValue + props.usdt+ props.usdc )),
             backgroundColor: "rgb(158,158,158)",
             borderColor: "rgb(158,158,158)",
           },
@@ -94,7 +45,9 @@ const Chart = () => {
             text: "Monthly Revenue & Cost",
           },
         },
+        maintainAspectRatio: false
       }}
+      width={"65%"}
     />
   </div>
 

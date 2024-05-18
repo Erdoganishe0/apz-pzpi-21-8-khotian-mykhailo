@@ -40,6 +40,7 @@ const buttonClick = () => {
             </div>
         </div>
         :
+        props.type == "Button" ?
         <div className = {'settings-element-button'}>
                 {props.isLogOut ?
                 <button className='settings-button' onClick={props.onClick}>

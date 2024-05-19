@@ -72,40 +72,55 @@ async function getBalancesForBlocks(address, blocks) {
 }
 
 async function getETHHistory (address/*, token*/) {
-    const blocks = await getLastNTransactionBlocks(address, TRANSACTION_COUNT);
-    const balances = await getBalancesForBlocks(address, blocks);
-    console.log("=====BLOCKS=====")
-    console.log(blocks);
-    console.log("=====BALANCES===")
-    console.log(balances);
-    return balances
+    try {
+        const blocks = await getLastNTransactionBlocks(address, TRANSACTION_COUNT);
+        const balances = await getBalancesForBlocks(address, blocks);
+        console.log("=====BLOCKS=====")
+        console.log(blocks);
+        console.log("=====BALANCES===")
+        console.log(balances);
+        return balances
+    } catch (error) {
+        return null
+    }
+
 }
 
 async function getTokens(address) {
-    await new Promise(resolve => setTimeout(resolve, 210));
-    const ethBall = web3.utils.fromWei(await web3.eth.getBalance(address), "ether");
-    await new Promise(resolve => setTimeout(resolve, 210));
-    const usdcBall = await getTokenBallance(address, USDC_ADDRESS, 6)
-    await new Promise(resolve => setTimeout(resolve, 210));
-    const usdtBall = await getTokenBallance(address, USDT_ADDRESS, 6)
-    await new Promise(resolve => setTimeout(resolve, 420));
-    const igniteBall = await getTokenBallance(address, IGNITE_ADRESS, 18)
-    await new Promise(resolve => setTimeout(resolve, 110));
-    const price = await getEthPrice();
+    try {
+        await new Promise(resolve => setTimeout(resolve, 210));
+        const ethBall = web3.utils.fromWei(await web3.eth.getBalance(address), "ether");
+        await new Promise(resolve => setTimeout(resolve, 210));
+        const usdcBall = await getTokenBallance(address, USDC_ADDRESS, 6)
+        await new Promise(resolve => setTimeout(resolve, 210));
+        const usdtBall = await getTokenBallance(address, USDT_ADDRESS, 6)
+        await new Promise(resolve => setTimeout(resolve, 420));
+        const igniteBall = await getTokenBallance(address, IGNITE_ADRESS, 18)
+        await new Promise(resolve => setTimeout(resolve, 110));
+        const price = await getEthPrice();
+    
+        const resp = {
+            "eth": ethBall.toString(),
+            "usdt":usdtBall.toString(), 
+            "usdc": usdcBall.toString(), 
+            "ignite": igniteBall.toString(),
+            "ethValue": price? price.toString() : "3010.2301"}
+        return resp
+    } catch (error) {
+        return null
+    }
 
-    const resp = {
-        "eth": ethBall.toString(),
-        "usdt":usdtBall.toString(), 
-        "usdc": usdcBall.toString(), 
-        "ignite": igniteBall.toString(),
-        "ethValue": price? price.toString() : "3010.2301"}
-    return resp
 }
 
 const getWallet = async (req, res) => {
     const adr = req.body.address || req.jwtaddress
 
     const jsonres = await getTokens(adr)
+    if(!jsonres) {
+        res.sendStatus(400)
+        return
+    }
+
     console.log("=====TOKENS=====")
     console.log(jsonres)
     res.json(jsonres)
@@ -115,6 +130,11 @@ const getBallance = async (req, res) => {
     const adr = req.body.address || req.jwtaddress
 
     const bal = await getETHHistory(adr)
+    if(!bal) {
+        res.sendStatus(400)
+        return
+    }
+
     res.json(bal)
 }
 

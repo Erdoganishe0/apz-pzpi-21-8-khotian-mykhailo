@@ -31,6 +31,7 @@ const [wallet, setWallet] = useState(null)
 const [isEnglish, setIsEnglish] = useState(null)
 const [isUkr, setIsUkr] = useState(null)
 const [isEmpty, setIsEmpty] = useState(null)
+console.log("====SETTINGS_IS_EMPTY====")
 console.log(isEmpty)
 
 useEffect(() => {
@@ -42,7 +43,10 @@ useEffect(() => {
             setIsEnglish(settingsData.isEngLanguage)
             setIsUkr(!settingsData.isEngRegion)
             setIsEmpty(!settingsData.hideEmptyTokens)
+            console.log("=====SETTINGS-DATA-FETCH=====")
+            console.log(!settingsData.hideEmptyTokens)
         } catch (error) {
+            window.location.href = '/login'
             console.error(error);
         }
     };
@@ -100,6 +104,12 @@ const [ActiveHeader, setActiveHeader] = useState(0)
                 name = {isEnglish ? 'Log Out' : 'Вийти'} 
                 description = {isEnglish ? 'Log out from the account': 'Вийти з акаунта'} 
                 options = {[{}]}/>
+                <SettingsElement 
+                 isActive = {isEmpty} 
+                 type = {"Bool"} 
+                 name = {isEnglish ? 'Hide empty tokens': 'Сховати порожні токени'} 
+                 description = {isEnglish ? 'Hide tokens with zero value.' : 'Сховати токени з нульової вартістю.'} 
+                 options = {[{}]}/>
           </div>
           : ActiveHeader == 1 ?  
           <div className='settings-elements-containers'>
@@ -118,13 +128,7 @@ const [ActiveHeader, setActiveHeader] = useState(0)
                     console.error('Failed to copy text: ', text)                
                   }
             }}/>
-                <SettingsElement 
-                 
-                isActive = {isEmpty} 
-                type = {"Bool"} 
-                name = {isEnglish ? 'Hide empty tokens': 'Сховати порожні токени'} 
-                description = {isEnglish ? 'Hide tokens with zero value.' : 'Сховати токени з нульової вартістю.'} 
-                options = {[{}]}/>
+                
           </div>: 
           ActiveHeader == 2 ?  
           <div className='settings-elements-containers'>

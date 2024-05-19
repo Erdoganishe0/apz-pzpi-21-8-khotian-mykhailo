@@ -6,7 +6,7 @@ const Find = (props) => {
   const isEnglish = true
   return (
     <div className='find-line'>
-        <input className='find-line-input' placeholder = {isEnglish ? 'Find...' : 'Знайти...'}></input>
+        <input className='find-line-input' placeholder = {props.placeholder}></input>
     </div>
 
   )

@@ -15,11 +15,17 @@ const Portfolio = (props) => {
   const [data, setData] = useState(null)
 
   const fetchUserSettings = async () => {
-    try {    
+    try {   
         const response = await axios.get('api/user')
-        return response.data.settings    
-    } catch (error) {    
-        console.error(error)    
+        if (response.status == 401){
+          window.location.href = '/login'
+        } else {
+          return response.data.settings    
+        }
+    } catch (error) { 
+      window.location.href = '/login'
+     
+      console.error(error)    
     }    
 }
 const [isEnglish, setIsEnglish] = useState(null)
@@ -57,7 +63,7 @@ useEffect(() => {
 
   return (
     <div className='Portfolio'>
-        {props.isMain ? <MainHeader /> : <StarredHeader/>}
+        {props.isMain ? <MainHeader /> : <StarredHeader user = {user? user : ""}/>}
         <Chart data  = {data? data.bal? data.bal :            
               [
                 {"bal": '0',"time":'00:00:00'},

@@ -24,8 +24,8 @@ const createNewUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
+    console.log(req.body)
     if (!req?.user) return res.status(400).json({ 'message': 'User ID required' });
-
     const user = await User.findOne({ username: req.user }).exec();
     if (!user) {
         return res.status(204).json({ "message": `No user with ID ${req.user}.` });
@@ -40,12 +40,34 @@ const updateUser = async (req, res) => {
         user.password = hashedPwd;
     }
 
-    if (req.body?.staredAccounts) user.staredAccounts = req.body.staredAccounts
-    if (req.body?.settings) user.settings = req.body.settings
+    if (req.body?.staredAccounts){
+        if (user.staredAccounts.includes(req.body.staredAccounts)){
+            user.staredAccounts.pop(req.body.staredAccounts)
+        } else {
+            user.staredAccounts.push(req.body.staredAccounts)
+        } 
+    } 
+    if (req.body?.settings) {
+        if(req.body?.settings?.isEngLanguage != undefined) {
+            console.log("===ISENGLANGUAGE====")
+            console.log(req.body.settings.isEngLanguage)
+            user.settings.isEngLanguage = req.body.settings.isEngLanguage
+        }
+        if(req.body?.settings?.isEngRegion != undefined) {
+            console.log("===ISENGREGION====")
+            console.log(req.body.settings.isEngRegion)
+            user.settings.isEngRegion = req.body.settings.isEngRegion
+        }   
+        if(req.body?.settings?.hideEmptyTokens != undefined) {
+            console.log("===hideEmptyTokens====")
+            console.log(req.body.settings.hideEmptyTokens) 
+            user.settings.hideEmptyTokens = req.body.settings.hideEmptyTokens
+        }
+    }
    
     const result = await user.save();
-    console.log(result);
-    res.json(result);
+    //console.log(result);
+    res.json(result); 
 }
 
 const deleteUser = async (req, res) => {

@@ -3,10 +3,10 @@ import './AlocationElement.css'
 
 
 function getAlocation(value, totalAmount){
-    return (value/totalAmount)*100
+    return totalAmount? (value/totalAmount)*100 : 0
 }
 function getAlocationWidth(value, totalAmount){
-    return (value/totalAmount)*15 + "vw"
+    return totalAmount? (value/totalAmount)*15 + "vw" : 0
 }
 
 const AlocationElement = (props) => {

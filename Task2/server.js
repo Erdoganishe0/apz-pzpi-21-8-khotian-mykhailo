@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use('/', require('./routes/root'));
 app.use('/auth', require('./routes/auth'));
 app.use('/api/user', require("./routes/api/user")); 
-app.use('/api/wallet', require("./routes/api/wallet")); 
+app.use('/api', require("./routes/api/root")); 
 
 
 mongoose.connection.once('open', () => {
@@ -34,4 +34,4 @@ mongoose.connection.once('open', () => {
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
     });
-});
+}); 

@@ -25,7 +25,21 @@ const userSchema = new Schema({
         adress: String,
         privateKey: String
     },
-
+    settings: {
+        isEngLanguage: {
+            type: Boolean,
+            default: true
+        },
+        isEngRegion: {
+            type: Boolean,
+            default: true
+        },
+        hideEmptyTokens: {
+            type: Boolean,
+            default: false
+        },
+    },
+    staredAccounts: [ String ],
     refreshToken: String,
     refreshTokenMobile: String
 });

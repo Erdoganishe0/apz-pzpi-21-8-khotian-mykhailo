@@ -5,7 +5,7 @@ import SettingsHeaderElement from '../Settings-Header-Element/SettingsHeaderElem
 
 
 const SettingsHeader = (props) => {
-  const isEnglish = true
+  const isEnglish = props.isEnglish
   const [ActiveHeader, setActiveHeader] = props.activeHeader
   return (
     <div className='settings-header-container'>

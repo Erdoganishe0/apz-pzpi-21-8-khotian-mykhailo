@@ -1,13 +1,36 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Element from '../Menu-Element/Element'
 import './Menu.css'
 
 const Menu = (props) => {
 
-  const isEnglish = false
+  const fetchUserSettings = async () => {
+    try {    
+        const response = await axios.get('api/user')
+        return response.data.settings    
+    } catch (error) {    
+        console.error(error)    
+    }    
+}
+const [isEnglish, setIsEnglish] = useState(null)
+useEffect(() => {
+    const fetchWallet = async () => {
+        try {
+            const settingsData = await fetchUserSettings()
+            setIsEnglish(settingsData.isEngLanguage)
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    fetchWallet();
+
+}, []);
 
   return (
 
+
+
+    
     <div className = "menu">
         <div className='menu-header'>
             <h2 className='menu-h2'>{isEnglish? "MENU": "МЕНЮ"}</h2>

@@ -15,12 +15,13 @@ const handleLogin = async (req, res) => {
     const match = await bcrypt.compare(pwd, foundUser.password);
     if (match) {
         const roles = Object.values(foundUser.roles);
-
+        
         const accessToken = jwt.sign(
-            {
+            { 
                 "UserInfo": {
                     "username": foundUser.username,
                     "email": foundUser.email,
+                    "address": foundUser.wallet.adress,
                     "roles": roles
                 }
             },
@@ -41,10 +42,9 @@ const handleLogin = async (req, res) => {
         res.cookie('accessToken', accessToken, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 60 * 60 * 1000 })
         res.json({ accessToken })
     } else {
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
         res.sendStatus(401);
     }
-}
+} 
 
 const handleLoginMobile = async (req, res) => {
     const { email, pwd } = req.body;
@@ -63,6 +63,7 @@ const handleLoginMobile = async (req, res) => {
                 "UserInfo": {
                     "username": foundUser.username,
                     "email": foundUser.email,
+                    "address": foundUser.wallet.adress,
                     "roles": roles
                 }
             },

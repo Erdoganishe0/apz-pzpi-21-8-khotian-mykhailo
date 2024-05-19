@@ -10,6 +10,7 @@ function getCuttedAdress(str){
 
 const Stared = () => {
 
+  const isEnglish = true
   const selectList = [
     {'image': "Static/ETH.png", "title": "Ethereum", 'adress':"0x4f19b886C5Cc4ac9Ca32596D2bBCf760928703B8"},
     {'image': "Static/ETH.png", "title": "Ethereum", 'adress':"0x8E655ab5872fF06b4125d98b40f76acFE09Ed822"},
@@ -19,7 +20,7 @@ const Stared = () => {
   return (
     <div className = "stared">
         <div className='stared-header'>
-            <h2 className='stared-h2'>STARRED ACCOUNTS</h2>
+            <h2 className='stared-h2'>{isEnglish ? "STARRED ACCOUNTS" : "ОБРАНІ АКАУНТИ"}</h2>
         </div>
         {selectList.length == 0 ? <NoStared/>
         :

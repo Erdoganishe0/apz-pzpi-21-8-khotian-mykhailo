@@ -18,7 +18,7 @@ const Chart = (props) => {
     return result
  } 
   const chartData = props.data;
-  console.log(`data: ${chartData[0].time}`)
+  console.log(`data: ${chartData.time}`)
 
   return (
     <div className="chart-container ataCard revenueCard">
@@ -27,7 +27,7 @@ const Chart = (props) => {
         labels: chartData.map((data) => convertToTime(data.time,props.isUkr)),
         datasets: [
           {
-            label: "Balance",
+            label: props.isEnglish ? "Balance" : "Баланс",
           data: chartData.map((data) => (data.bal*props.ethValue + props.usdt+ props.usdc )),
             backgroundColor: "rgb(158,158,158)",
             borderColor: "rgb(158,158,158)",
@@ -42,7 +42,7 @@ const Chart = (props) => {
         },
         plugins: {
           title: {
-            text: "Monthly Revenue & Cost",
+            text: "",
           },
         },
         maintainAspectRatio: false

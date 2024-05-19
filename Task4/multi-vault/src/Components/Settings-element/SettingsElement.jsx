@@ -1,31 +1,50 @@
 import React, { useState } from 'react';
 import './SettingsElement.css'
+
+
 const SettingsElement = (props) => {
 
 const options = props.options
 const [isActive, setisActive] = useState(props.isActive)
 
 
-const buttonClick = () => {
+    const buttonClick = () => {
 
     setisActive(!isActive);
 
   };
 
+  console.log("IsACtive for " + props.name + " is " + isActive)
+
   return (
     <div className='settings-element-container'>
-        <div className='settings-element-text'>
-            <p className='settings-element-name'>
-                {props.name}
-            </p>
-            <p className='settings-element-description'>
-                {props.description}
-            </p>
-        </div>
+        {
+        props.type != "Text" ? 
+            <div className='settings-element-text'>
+                <p className='settings-element-name'>
+                    {props.name}
+                </p>
+                <p className='settings-element-description'>
+                    {props.description}
+                </p>
+            </div>
+            :
+            <div className='settings-element-text'>
+                <p className='settings-element-name'>
+                    {props.name}
+                </p>
+                <p className='settings-element-description'>
+                    {props.description}
+                </p>
+                <p className='settings-element-description'>
+                    {props.description2}
+                </p>
+            </div>
+        }
         {props.type == "List" ? <div className='settings-element-list'>
         <select>
             {options.map((option, index) => (
-                <option key={index} value={option.value}>{option.label}</option>
+                <option key={index} value={option.value} selected={index === props.active} >{option.label} </option>
             ))}
         </select>
         </div>
@@ -54,7 +73,10 @@ const buttonClick = () => {
                 </button>
                 }
         </div>
+        :
+        <></>
         } 
+
     </div>
   )
 }

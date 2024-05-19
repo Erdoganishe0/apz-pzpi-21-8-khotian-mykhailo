@@ -8,6 +8,6 @@ router.get('/index',
     console.log("dfsdf") 
     // res.sendFile(path.join(__dirname, '../../Task4/multi-vault/src',  'App.js'));
     res.json({message: "hui"})
-}); 
+});
 
 module.exports = router;

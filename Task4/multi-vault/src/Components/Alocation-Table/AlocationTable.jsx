@@ -4,14 +4,14 @@ import AlocationElement from '../AlocationElement/AlocationElement'
 
 const AlocationTable = (props) => {
 
-    const isEnglish = true
+    const isEnglish = props.isEnglish
     console.log(props.data[0])
     const [ethCount,setEthCount] = useState(props.data[0]? props.data[0].eth : 0)
 
     const isHide = false
   return (
     <div className='alocation-table-container'>
-        <div className='alocation-table-header'>Asset allocation</div>
+        <div className='alocation-table-header'>{isEnglish ? "Asset allocation": "Розподіл токенів"}</div>
 
         <div className='alocation-table'>
             <div className='alocation-table-row alocaion-table-first'>

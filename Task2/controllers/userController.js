@@ -39,6 +39,9 @@ const updateUser = async (req, res) => {
         const hashedPwd = await bcrypt.hash(req.body.password, 10);
         user.password = hashedPwd;
     }
+
+    if (req.body?.staredAccounts) user.staredAccounts = req.body.staredAccounts
+    if (req.body?.settings) user.settings = req.body.settings
    
     const result = await user.save();
     console.log(result);
@@ -57,7 +60,6 @@ const deleteUser = async (req, res) => {
 }
 
 const getUser = async (req, res) => {
-    console.log("AFTER JWT")
 
     if (!req?.user) return res.status(400).json({ 'message': 'User ID required' });
 
@@ -69,7 +71,6 @@ const getUser = async (req, res) => {
     const { refreshTokenMobile, password, refreshToken, wallet, ...rest } = data;
 
     rest.wallet = data.wallet.adress;
-
     res.json(rest);
 }
 

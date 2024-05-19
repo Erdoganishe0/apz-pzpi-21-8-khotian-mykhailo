@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const User = require('../model/User')
 
 const verifyJWT2 = (req, res, next) => {
-    console.log("VERIFY")
     const authHeader = req.headers.authorization || req.headers.Authorization;
     if (!authHeader?.startsWith('Bearer ')) return res.sendStatus(401);
     const token = authHeader.split(' ')[1];
@@ -13,8 +12,6 @@ const verifyJWT2 = (req, res, next) => {
             if (err) return res.sendStatus(403);
             req.user = decoded.UserInfo.username;
             req.roles = decoded.UserInfo.roles;
-
-            console.log("DECO: " + decoded.UserInfo)
             next();
         }
     );
@@ -59,6 +56,7 @@ const verifyJWT = (req, res, next) => {
                             "UserInfo": {
                                 "username": foundUser.username,
                                 "email": foundUser.email,
+                                "address": foundUser.wallet.adress,
                                 "roles": roles
                             }
                         },
@@ -69,19 +67,20 @@ const verifyJWT = (req, res, next) => {
 
                     res.cookie('accessToken', accessToken, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 60 * 60 * 1000 })
 
-            
+             
                     req.user = foundUser.username;
                     req.roles = roles;
-
+                    req.jwtaddress = foundUser.wallet.adress
                     next();
                 });
-            } else {
+            } else { 
                 res.sendStatus(401)
                 return
             }
         } else {
             req.user = decoded.UserInfo.username;
             req.roles = decoded.UserInfo.roles;
+            req.jwtaddress = decoded.UserInfo.address
 
             next();
         }

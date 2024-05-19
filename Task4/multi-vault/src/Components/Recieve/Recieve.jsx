@@ -7,26 +7,38 @@ import { QRCode } from 'react-qrcode-logo';
 
 const Recieve = (props) => {
 
-    const isEnglish = true
+    
 
     const fetchUserWallet = async () => {
         try {    
             const response = await axios.get('api/user')
-            console.log(response.data.wallet)    
+            console.log(response.data)    
             return response.data.wallet    
         } catch (error) {    
             console.error(error)    
         }    
     }
+
+
+    const fetchUserSettings = async () => {
+        try {    
+            const response = await axios.get('api/user')
+            return response.data.settings    
+        } catch (error) {    
+            console.error(error)    
+        }    
+    }
     
-
+    
     const [wallet, setWallet] = useState(null)
-
+    const [isEnglish, setIsEnglish] = useState(null)
     useEffect(() => {
         const fetchWallet = async () => {
             try {
-                const walletData = await fetchUserWallet();
-                setWallet(walletData);
+                const walletData = await fetchUserWallet()
+                setWallet(walletData)
+                const settingsData = await fetchUserSettings()
+                setIsEnglish(settingsData.isEngLanguage)
             } catch (error) {
                 console.error(error);
             }

@@ -9,6 +9,15 @@
     margin-left: 1vw;
 
 }
+.find-button{
+    width: 4vw;
+    height: 3vh;
+    background-color: transparent;
+    color: rgb(154,148,236);
+    border: 0.05vh solid rgb(154,148,236);
+    font-size: 0.8vw;
+    border-radius: 1.4vh;
+}
 
 .find-line-input{
     background-color: transparent;

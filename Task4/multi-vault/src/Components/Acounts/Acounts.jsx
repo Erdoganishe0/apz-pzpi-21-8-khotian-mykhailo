@@ -69,7 +69,7 @@ const Acounts = () => {
         <div className='accounts-container'>
             <Header />
             <div className='accounts-table-container'>
-                <Find placeholder = {isEnglish ? 'Find...' : 'Знайти...'} />
+                <Find placeholder = {isEnglish ? 'Find...' : 'Знайти...'} button =  {isEnglish ? 'Search' : 'Пошук'}/>
                     {Array.from({length: Math.ceil(accountList.length / 3)}, (_, i) => i).map(i => (
                     <div key={i} className='account-table'>
                     {accountList.slice(i * 3, (i + 1) * 3).map((account, index) => (

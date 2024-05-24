@@ -15,7 +15,6 @@ const Stared = (props) => {
         const response = await axios.get('api/user')
         return response.data.settings    
     } catch (error) {    
-        console.error(error)    
     }    
 }
 const [isEnglish, setIsEnglish] = useState(null)
@@ -46,25 +45,16 @@ useEffect(() => {
     const fetchWallet = async () => {
         try {
             const staredData = await fetchUser()
-            console.log("-----------------------------staredData")
-            console.log(staredData)
             setStared(staredData)
             
 
         } catch (error) {
-            console.error(error);
         }
     };
     fetchWallet();
 
 }, []);
-  console.log("--------------------stared-----------")
-  console.log(stared)
 
-  // const selectList = [
-  //   {'image': "Static/ETH.png", "title": "Ethereum", 'adress':"0x4f19b886C5Cc4ac9Ca32596D2bBCf760928703B8"},
-  //   {'image': "Static/ETH.png", "title": "Ethereum", 'adress':"0x8E655ab5872fF06b4125d98b40f76acFE09Ed822"},
-  // ]
 
   return (
     <div className = "stared">

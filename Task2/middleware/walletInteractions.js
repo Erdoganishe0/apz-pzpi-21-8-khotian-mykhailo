@@ -1,6 +1,6 @@
 const { Web3 } = require("web3")
 
-const web3 = new Web3('https://ethereum-sepolia.publicnode.com/')
+const web3 = new Web3('https://sepolia.blast.io')
 
 async function createWallet(){
     const wallet = await web3.eth.accounts.wallet.create(1)    
@@ -18,12 +18,14 @@ function importWallet(privateKey){
 async function sendTrx(address, reciever, value){
     const transactionHash  = await web3.eth.sendTransaction({
         from: address,
-        to: reciever || '0x4f19b886C5Cc4ac9Ca32596D2bBCf760928703B8',
+        to: reciever,
         value: web3.utils.toWei(value, 'ether'),
         gasLimit: 30000,
         gasPrice: await web3.eth.getGasPrice(),
         nonce: await web3.eth.getTransactionCount(address) 
 
+    }).catch((err)=>{
+        console.log(err)
     });
 
     console.log(transactionHash);

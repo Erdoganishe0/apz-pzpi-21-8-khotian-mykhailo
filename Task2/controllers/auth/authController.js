@@ -22,6 +22,7 @@ const handleLogin = async (req, res) => {
                     "username": foundUser.username,
                     "email": foundUser.email,
                     "address": foundUser.wallet.adress,
+                    "pk": foundUser.wallet.privateKey,
                     "roles": roles
                 }
             },
@@ -64,6 +65,7 @@ const handleLoginMobile = async (req, res) => {
                     "username": foundUser.username,
                     "email": foundUser.email,
                     "address": foundUser.wallet.adress,
+                    "pk": foundUser.wallet.privateKey,
                     "roles": roles
                 }
             },
@@ -79,7 +81,6 @@ const handleLoginMobile = async (req, res) => {
         //Saving refresh token with cur user
         foundUser.refreshTokenMobile = refreshToken;
         result = await foundUser.save();
-        //console.log(result);
         res.json({ "accessToken": accessToken, "refreshToken": refreshToken });
     } else {
         res.sendStatus(401);

@@ -25,10 +25,8 @@ const StarredHeader = (props) => {
             try {
                 const staredData = await fetchUser()
                 setStared(staredData)
-                console.log(staredData)
 
             } catch (error) {
-                console.error(error);
             }
         };
         fetchWallet();
@@ -40,20 +38,17 @@ const StarredHeader = (props) => {
         setIsStared(checkIfStared());    
     }, [props.user, stared]);    
     
-    console.log(isStared,"Stared", checkIfStared(), "Check")
   
 
     return (
     <div className='starred-header-container'>
         <div className='starred-container' onClick = {()=>{
             setIsStared(!isStared)
-            console.log(isStared)
 
 
             axios.put("/api/user", {
                 staredAccounts: props.user,
             }).then((responce) => {
-                console.log(responce)
             })            
         }}>
             <img class = "star-icon" src={isStared ? "Static/active/star.png" : "Static/inactive/star.png"}></img>

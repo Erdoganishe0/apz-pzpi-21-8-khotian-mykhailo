@@ -28,7 +28,6 @@ const Acounts = () => {
     
     }, []);
     
-    console.log(isEnglish)
 
     const accountList = [
         {"src":"Brain.png",

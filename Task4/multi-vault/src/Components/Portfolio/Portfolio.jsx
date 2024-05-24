@@ -38,18 +38,18 @@ useEffect(() => {
       const settingsData = await fetchUserSettings()
       setIsEnglish(settingsData.isEngLanguage)
       setIsUkr(!settingsData.isEngRegion)
-      console.log("User"+user)
+
       const responseW = await axios.post('/api/wallet', {"address": user ? user : null});
       const responseB = await axios.post('/api/balance', {"address": user ? user : null});
       const dataW = responseW.data;
       const dataB = responseB.data;
       let data = {"bal": dataB, "values": dataW}
       setData(data);
-      console.log(data);
+
       
      
     } catch (error) {
-      console.log(error);
+
     }
 
   };

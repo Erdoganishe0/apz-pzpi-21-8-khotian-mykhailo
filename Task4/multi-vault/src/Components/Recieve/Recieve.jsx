@@ -12,10 +12,8 @@ const Recieve = (props) => {
     const fetchUserWallet = async () => {
         try {    
             const response = await axios.get('api/user')
-            console.log(response.data)    
             return response.data.wallet    
         } catch (error) {    
-            console.error(error)    
         }    
     }
 

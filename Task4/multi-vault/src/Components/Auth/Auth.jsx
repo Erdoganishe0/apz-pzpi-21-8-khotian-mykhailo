@@ -33,7 +33,6 @@ const Auth = () => {
     function buttonOnClick(){
 
         const dataObject = get_current_values()
-        console.log(dataObject)
         fetchData(dataObject)      
    
     }

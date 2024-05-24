@@ -5,7 +5,6 @@ import AlocationElement from '../AlocationElement/AlocationElement'
 const AlocationTable = (props) => {
 
     const isEnglish = props.isEnglish
-    console.log(props.data[0])
     const [ethCount,setEthCount] = useState(props.data[0]? props.data[0].eth : 0)
 
     const isHide = false

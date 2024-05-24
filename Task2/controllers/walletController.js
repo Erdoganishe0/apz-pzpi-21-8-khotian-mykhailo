@@ -1,3 +1,5 @@
+const { importWallet, sendTrx } = require('../middleware/walletInteractions')
+
 const { Web3 } = require("web3")
 const web3 = new Web3('https://sepolia.blast.io')
 
@@ -37,7 +39,6 @@ async function findBlockForTransactionCount(address, targetCount, fromBlock, toB
         }
         counter +=1;   
     }
-    console.log("Block-Find-Counter: " + counter)
     return fromBlock;
 }
 
@@ -138,7 +139,28 @@ const getBallance = async (req, res) => {
     res.json(bal)
 }
 
+const sendTransaction = async (req, res) => {
+    console.log("=====sendTRX=====")
+    const pk = req.jwtpk;
+    const reciever = req.body?.reciever
+    const amount = req.body?.amount
+    if(!pk || !reciever || !amount) {
+        res.sendStatus(400)
+        return
+    }
+
+    try {
+        wallet = importWallet(pk)
+        sendTrx(wallet.address, reciever, amount)
+    } catch (err) {
+        res.sendStatus(400)
+    }
+
+    res.sendStatus(200)
+}
+
 module.exports = {
     getWallet,
-    getBallance
+    getBallance,
+    sendTransaction
 }

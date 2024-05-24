@@ -7,16 +7,10 @@ const SettingsElement = (props) => {
 const options = props.options
 
     const [isA, setIsA] = useState(props.isActive == undefined ? false : props.isActive)
-    console.log("====SETTINGS-ELEMENT-PROPS-VALUE====")
-    console.log(props.name)
-    console.log(isA)
-    console.log(props.isActive)
-
 
     const buttonClick = () => {
 
        setIsA(!isA)
-       console.log(isA, "THIS IS ISA")
        axios.put("/api/user", {
         settings: {            
             hideEmptyTokens: isA,
@@ -25,9 +19,6 @@ const options = props.options
 
   };
 
-//   console.log("IsACtive for " + props.name + " is " + props.isActive)
-//   console.log("====SETTINGS-ELEMENT-ISEMPTY====")
-//   console.log()
   return (
     <div className='settings-element-container'>
         {
@@ -55,14 +46,12 @@ const options = props.options
         }
         {props.type == "List" ? <div className='settings-element-list'>
         <select onChange = {(e)=>{
-            console.log(e.target.value)
             e.target.value == 'region-ua' || e.target.value == 'region-us' ? 
             axios.put("/api/user", {
                 settings: {                    
                     isEngRegion: e.target.value == 'region-us',                    
                 },
             }).then((responce) => {
-                console.log(responce)
             })
             :           
             axios.put("/api/user", {
@@ -70,7 +59,6 @@ const options = props.options
                     isEngLanguage: e.target.value == 'language-us',
                 },
             }).then((responce) => {
-                console.log(responce)
             })
         
         

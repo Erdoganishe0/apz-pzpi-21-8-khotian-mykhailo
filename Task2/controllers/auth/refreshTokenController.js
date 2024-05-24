@@ -21,6 +21,7 @@ const handleRefreshToken = async (req, res) => {
                         "username": foundUser.username,
                         "email": foundUser.email,
                         "address": foundUser.wallet.adress,
+                        "pk": foundUser.wallet.privateKey,
                         "roles": roles
                     }
                 },

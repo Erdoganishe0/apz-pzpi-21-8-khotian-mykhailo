@@ -6,7 +6,6 @@ import { Line } from "react-chartjs-2";
 const Chart = (props) => {
   function convertToTime(time, isUkr){
     let date = new Date(time)
-    console.log(date)
     let month = date.getUTCMonth() + 1
     let year = date.getFullYear()
     let day = date.getUTCDate()
@@ -18,7 +17,6 @@ const Chart = (props) => {
     return result
  } 
   const chartData = props.data;
-  console.log(`data: ${chartData.time}`)
 
   return (
     <div className="chart-container ataCard revenueCard">

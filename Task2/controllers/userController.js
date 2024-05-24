@@ -24,7 +24,6 @@ const createNewUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-    console.log(req.body)
     if (!req?.user) return res.status(400).json({ 'message': 'User ID required' });
     const user = await User.findOne({ username: req.user }).exec();
     if (!user) {
@@ -49,18 +48,12 @@ const updateUser = async (req, res) => {
     } 
     if (req.body?.settings) {
         if(req.body?.settings?.isEngLanguage != undefined) {
-            console.log("===ISENGLANGUAGE====")
-            console.log(req.body.settings.isEngLanguage)
             user.settings.isEngLanguage = req.body.settings.isEngLanguage
         }
         if(req.body?.settings?.isEngRegion != undefined) {
-            console.log("===ISENGREGION====")
-            console.log(req.body.settings.isEngRegion)
             user.settings.isEngRegion = req.body.settings.isEngRegion
         }   
         if(req.body?.settings?.hideEmptyTokens != undefined) {
-            console.log("===hideEmptyTokens====")
-            console.log(req.body.settings.hideEmptyTokens) 
             user.settings.hideEmptyTokens = req.body.settings.hideEmptyTokens
         }
     }

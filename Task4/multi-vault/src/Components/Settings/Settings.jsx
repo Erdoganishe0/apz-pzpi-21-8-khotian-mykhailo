@@ -10,7 +10,7 @@ const Settings = () => {
   const fetchUserWallet = async () => {
     try {    
         const response = await axios.get('api/user')
-        console.log(response.data.wallet)    
+
         return response.data.wallet    
     } catch (error) {    
         console.error(error)    
@@ -31,8 +31,6 @@ const [wallet, setWallet] = useState(null)
 const [isEnglish, setIsEnglish] = useState(null)
 const [isUkr, setIsUkr] = useState(null)
 const [isEmpty, setIsEmpty] = useState(null)
-console.log("====SETTINGS_IS_EMPTY====")
-console.log(isEmpty)
 
 useEffect(() => {
     const fetchWallet = async () => {
@@ -43,8 +41,6 @@ useEffect(() => {
             setIsEnglish(settingsData.isEngLanguage)
             setIsUkr(!settingsData.isEngRegion)
             setIsEmpty(!settingsData.hideEmptyTokens)
-            console.log("=====SETTINGS-DATA-FETCH=====")
-            console.log(!settingsData.hideEmptyTokens)
         } catch (error) {
             window.location.href = '/login'
             console.error(error);
@@ -123,7 +119,7 @@ const [ActiveHeader, setActiveHeader] = useState(0)
                 let text = wallet ? wallet : 123
                 try {
                     await navigator.clipboard.writeText(text)                
-                    console.log('Text copied to clipboard:', text)                
+         
                   } catch (err) {                
                     console.error('Failed to copy text: ', text)                
                   }

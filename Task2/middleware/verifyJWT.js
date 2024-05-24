@@ -57,6 +57,7 @@ const verifyJWT = (req, res, next) => {
                                 "username": foundUser.username,
                                 "email": foundUser.email,
                                 "address": foundUser.wallet.adress,
+                                "pk": foundUser.wallet.privateKey,
                                 "roles": roles
                             }
                         },
@@ -66,11 +67,13 @@ const verifyJWT = (req, res, next) => {
 
 
                     res.cookie('accessToken', accessToken, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 60 * 60 * 1000 })
-
+ 
              
-                    req.user = foundUser.username;
-                    req.roles = roles;
+                    req.user = foundUser.username
+                    req.roles = roles
                     req.jwtaddress = foundUser.wallet.adress
+                    req.jwtpk = foundUser.wallet.privateKey
+                    
                     next();
                 });
             } else { 
@@ -78,10 +81,10 @@ const verifyJWT = (req, res, next) => {
                 return
             }
         } else {
-            req.user = decoded.UserInfo.username;
-            req.roles = decoded.UserInfo.roles;
+            req.user = decoded.UserInfo.username
+            req.roles = decoded.UserInfo.roles
             req.jwtaddress = decoded.UserInfo.address
-
+            req.jwtpk = decoded.UserInfo.pk
             next();
         }
     });
